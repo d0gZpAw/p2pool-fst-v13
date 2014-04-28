@@ -144,6 +144,28 @@ nets = dict(
         VERSION_WARNING=lambda v: 'Upgrade Fastcoin to >= 0.8.5.1!' if v < 70002 else None,
     ),
 
+    ircoin=math.Object(
+        PARENT=networks.nets['ircoin'],
+        SHARE_PERIOD=10, # seconds
+        NEW_SHARE_PERIOD=10, # seconds
+        CHAIN_LENGTH=24*60*60//10, # shares
+        REAL_CHAIN_LENGTH=24*60*60//10, # shares
+        TARGET_LOOKBEHIND=200, # shares
+        SPREAD=30, # blocks
+        NEW_SPREAD=30, # blocks
+        IDENTIFIER='578eb3879d051078'.decode('hex'),
+        PREFIX='d7939c89c17be8f3'.decode('hex'),
+        P2P_PORT=26667,
+        MIN_TARGET=0,
+        MAX_TARGET=2**256//2**20 - 1,
+        PERSIST=True,
+        WORKER_PORT=7970,
+        BOOTSTRAP_ADDRS='irc.inetrader.com'.split(' '),
+        ANNOUNCE_CHANNEL='#p2pool-irc',
+        VERSION_CHECK=lambda v: True,
+        VERSION_WARNING=lambda v: 'Upgrade ircoin to >= 0.8.6.2!' if v < 70002 else None,
+    ),
+	
 )
 for net_name, net in nets.iteritems():
     net.NAME = net_name
